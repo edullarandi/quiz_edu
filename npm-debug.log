@@ -1,28 +1,83 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/home/ubuntu/.nvm/v0.10.35/bin/node',
 1 verbose cli   '/home/ubuntu/.nvm/v0.10.35/bin/npm',
-1 verbose cli   'start' ]
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'method-override@2.3.1~' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.35
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info prestart quiz@0.0.0
-6 info start quiz@0.0.0
-7 verbose unsafe-perm in lifecycle true
-8 info quiz@0.0.0 Failed to exec start script
-9 error quiz@0.0.0 start: `node ./bin/www`
-9 error Exit status 8
-10 error Failed at the quiz@0.0.0 start script.
-10 error This is most likely a problem with the quiz package,
-10 error not with npm itself.
-10 error Tell the author that this fails on your system:
-10 error     node ./bin/www
-10 error You can get their info via:
-10 error     npm owner ls quiz
-10 error There is likely additional logging output above.
-11 error System Linux 3.14.13-c9
-12 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "start"
-13 error cwd /home/ubuntu/workspace/mis_proyectos/quiz
-14 error node -v v0.10.35
-15 error npm -v 1.4.28
-16 error code ELIFECYCLE
-17 verbose exit [ 1, true ]
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'method-override@2.3.1~', null ]
+6 verbose cache add name=undefined spec="method-override@2.3.1~" args=["method-override@2.3.1~",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'method-override@2.3.1~',
+7 verbose parsed url   path: 'method-override@2.3.1~',
+7 verbose parsed url   href: 'method-override@2.3.1~' }
+8 verbose cache add name="method-override" spec="2.3.1~" args=["method-override","2.3.1~"]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: '2.3.1~',
+9 verbose parsed url   path: '2.3.1~',
+9 verbose parsed url   href: '2.3.1~' }
+10 verbose addNamed [ 'method-override', '2.3.1~' ]
+11 verbose addNamed [ null, null ]
+12 silly lockFile c29f75ab-method-override-2-3-1 method-override@2.3.1~
+13 verbose lock method-override@2.3.1~ /home/ubuntu/.npm/c29f75ab-method-override-2-3-1.lock
+14 info addNameTag [ 'method-override', '2.3.1~' ]
+15 verbose request where is /method-override
+16 verbose request registry https://registry.npmjs.org/
+17 verbose request id 02a1efc1a79620a6
+18 verbose url raw /method-override
+19 verbose url resolving [ 'https://registry.npmjs.org/', './method-override' ]
+20 verbose url resolved https://registry.npmjs.org/method-override
+21 verbose request where is https://registry.npmjs.org/method-override
+22 info trying registry request attempt 1 at 17:36:35
+23 http GET https://registry.npmjs.org/method-override
+24 http 200 https://registry.npmjs.org/method-override
+25 silly registry.get cb [ 200,
+25 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+25 silly registry.get     etag: '"7CSC77L8JJU0S20QEZPG4YBSQ"',
+25 silly registry.get     'content-type': 'application/json',
+25 silly registry.get     'cache-control': 'max-age=60',
+25 silly registry.get     'content-length': '32067',
+25 silly registry.get     'accept-ranges': 'bytes',
+25 silly registry.get     date: 'Sun, 05 Jul 2015 17:36:35 GMT',
+25 silly registry.get     via: '1.1 varnish',
+25 silly registry.get     age: '32',
+25 silly registry.get     connection: 'keep-alive',
+25 silly registry.get     'x-served-by': 'cache-ams4124-AMS',
+25 silly registry.get     'x-cache': 'HIT',
+25 silly registry.get     'x-cache-hits': '2',
+25 silly registry.get     'x-timer': 'S1436117795.906431,VS0,VE0',
+25 silly registry.get     vary: 'Accept' } ]
+26 silly lockFile c29f75ab-method-override-2-3-1 method-override@2.3.1~
+27 silly lockFile c29f75ab-method-override-2-3-1 method-override@2.3.1~
+28 error notarget No compatible version found: method-override@'2.3.1~'
+28 error notarget Valid install targets:
+28 error notarget ["1.0.0","1.0.1","1.0.2","2.0.0","2.0.1","2.0.2","2.1.0","2.1.1","2.1.2","2.1.3","2.2.0","2.3.0","2.3.1","2.3.2","2.3.3"]
+28 error notarget
+28 error notarget This is most likely not a problem with npm itself.
+28 error notarget In most cases you or one of your dependencies are requesting
+28 error notarget a package version that doesn't exist.
+29 error System Linux 3.14.13-c9
+30 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "install" "--save" "method-override@2.3.1~"
+31 error cwd /home/ubuntu/workspace/mis_proyectos/quiz
+32 error node -v v0.10.35
+33 error npm -v 1.4.28
+34 error code ETARGET
+35 verbose exit [ 1, true ]
