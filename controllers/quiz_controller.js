@@ -29,9 +29,8 @@ exports.index = function(req, res) {
    models.Quiz.findAll().then(
     function(quizes) {
       res.render('quizes/index', {quizes: quizes, errors: []});
-    }
-  ).catch(function(error){next(error)})
-};
+    });
+}
 };
 
 
