@@ -1,0 +1,101 @@
+2015-07-07T12:21:38.361808+00:00 app[web.1]:     at Socket.emit (events.js:95:17)
+2015-07-07T12:21:38.361811+00:00 app[web.1]:     at Socket.emit (events.js:92:17)
+2015-07-07T12:21:38.361810+00:00 app[web.1]:     at Socket.<anonymous> (_stream_readable.js:765:14)
+2015-07-07T12:21:38.361812+00:00 app[web.1]:     at emitReadable_ (_stream_readable.js:427:10)
+2015-07-07T12:21:38.361814+00:00 app[web.1]:     at emitReadable (_stream_readable.js:423:5)
+2015-07-07T12:21:38.361815+00:00 app[web.1]:     at readableAddChunk (_stream_readable.js:166:9)
+2015-07-07T12:21:38.361818+00:00 app[web.1]:     at TCP.onread (net.js:529:21)
+2015-07-07T12:21:38.361816+00:00 app[web.1]:     at Socket.Readable.push (_stream_readable.js:128:10)
+2015-07-07T12:22:08.321510+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=GET path="/quizes?search=Italia&searchTema=humanidades" host=quiz2015edu.herokuapp.com request_id=5ad683d1-23ae-4307-9791-cacbc39581b7 fwd="81.47.192.242" dyno=web.1 connect=2ms service=30001ms status=503 bytes=0
+2015-07-07T12:22:08.323094+00:00 app[web.1]: [0mGET /quizes?search=Italia&searchTema=humanidades [32m- [0m- ms - -[0m
+2015-07-07T12:34:20.445020+00:00 heroku[web.1]: State changed from up to starting
+2015-07-07T12:34:22.160282+00:00 heroku[web.1]: Starting process with command `node ./bin/www`
+2015-07-07T12:34:23.984834+00:00 app[web.1]: Recommending WEB_CONCURRENCY=1
+2015-07-07T12:34:23.984810+00:00 app[web.1]: Detected 512 MB available memory, 512 MB limit per process (WEB_MEMORY)
+2015-07-07T12:34:24.088824+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2015-07-07T12:34:24.525175+00:00 app[web.1]: Tue, 07 Jul 2015 12:34:24 GMT body-parser deprecated undefined extended: provide extended option at app.js:24:20
+2015-07-07T12:34:24.632398+00:00 app[web.1]: Executing (default): INSERT INTO "Quizzes" ("pregunta","respuesta","tema","updatedAt","createdAt") VALUES ('Capital de Italia','Roma','humanidades','2015-07-07 12:34:24.626 +00:00','2015-07-07 12:34:24.626 +00:00') RETURNING *;
+2015-07-07T12:34:24.573630+00:00 app[web.1]: Executing (default): CREATE TYPE "enum_Quizzes_tema" AS ENUM('otros', 'humanidades', 'ocio', 'ciencia', 'tecnologia');
+2015-07-07T12:34:24.644079+00:00 app[web.1]: Base de datos inicializada
+2015-07-07T12:34:24.607169+00:00 app[web.1]: Executing (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND a.attnum = ANY(ix.indkey) AND t.relkind = 'r' and t.relname = 'Quizzes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname;
+2015-07-07T12:34:24.563550+00:00 app[web.1]: Executing (default): SELECT t.typname enum_name, array_agg(e.enumlabel) enum_value FROM pg_type t JOIN pg_enum e ON t.oid = e.enumtypid JOIN pg_catalog.pg_namespace n ON n.oid = t.typnamespace WHERE n.nspname = 'public'  AND t.typname='enum_Quizzes_tema'  GROUP BY 1
+2015-07-07T12:34:24.577700+00:00 app[web.1]: Executing (default): CREATE TABLE IF NOT EXISTS "Quizzes" ("id"   SERIAL , "pregunta" VARCHAR(255), "respuesta" VARCHAR(255), "tema" "enum_Quizzes_tema", "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL, "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL, PRIMARY KEY ("id"));
+2015-07-07T12:34:24.616005+00:00 app[web.1]: Executing (default): SELECT count(*) AS "count" FROM "Quizzes" AS "Quiz";
+2015-07-07T12:34:24.637897+00:00 app[web.1]: Executing (default): INSERT INTO "Quizzes" ("pregunta","respuesta","tema","updatedAt","createdAt") VALUES ('Capital de Portugal','Lisboa','humanidades','2015-07-07 12:34:24.630 +00:00','2015-07-07 12:34:24.630 +00:00') RETURNING *;
+2015-07-07T12:34:25.868227+00:00 heroku[web.1]: Process exited with status 143
+2015-07-07T12:34:25.915412+00:00 heroku[web.1]: State changed from starting to up
+2015-07-07T12:35:54.017363+00:00 heroku[router]: at=info method=GET path="/" host=quiz2015edu.herokuapp.com request_id=a7361bbb-f3cc-4e39-9bab-ff1f817e8e50 fwd="81.47.192.242" dyno=web.1 connect=1ms service=38ms status=200 bytes=1375
+2015-07-07T12:35:54.005727+00:00 app[web.1]: [0mGET / [32m200 [0m26.402 ms - 1179[0m
+2015-07-07T12:35:54.215597+00:00 heroku[router]: at=info method=GET path="/stylesheets/style.css" host=quiz2015edu.herokuapp.com request_id=4b66fc05-8345-4b74-8cc9-33fed33d9dfe fwd="81.47.192.242" dyno=web.1 connect=0ms service=20ms status=200 bytes=881
+2015-07-07T12:35:54.201841+00:00 app[web.1]: [0mGET /stylesheets/style.css [32m200 [0m7.360 ms - 595[0m
+2015-07-07T12:35:54.627710+00:00 heroku[router]: at=info method=GET path="/stylesheets/smartphone.css" host=quiz2015edu.herokuapp.com request_id=545b7c48-0750-4c15-8fc0-8a9d44d49ea1 fwd="81.47.192.242" dyno=web.1 connect=0ms service=2ms status=200 bytes=621
+2015-07-07T12:35:54.622729+00:00 heroku[router]: at=info method=GET path="/stylesheets/wide.css" host=quiz2015edu.herokuapp.com request_id=6eca9d24-eba8-477d-b674-f5d377578ba3 fwd="81.47.192.242" dyno=web.1 connect=0ms service=4ms status=200 bytes=606
+2015-07-07T12:35:54.620910+00:00 app[web.1]: [0mGET /stylesheets/wide.css [32m200 [0m2.456 ms - 320[0m
+2015-07-07T12:35:54.627043+00:00 app[web.1]: [0mGET /stylesheets/smartphone.css [32m200 [0m1.325 ms - 335[0m
+2015-07-07T12:35:56.330566+00:00 app[web.1]: Executing (default): SELECT "id", "pregunta", "respuesta", "tema", "createdAt", "updatedAt" FROM "Quizzes" AS "Quiz";
+2015-07-07T12:35:56.526312+00:00 app[web.1]: [0mGET /stylesheets/smartphone.css [36m304 [0m1.581 ms - -[0m
+2015-07-07T12:35:56.536327+00:00 app[web.1]: [0mGET /stylesheets/style.css [36m304 [0m0.577 ms - -[0m
+2015-07-07T12:35:56.342945+00:00 app[web.1]: [0mGET /quizes [32m200 [0m27.265 ms - 2573[0m
+2015-07-07T12:35:56.528241+00:00 app[web.1]: [0mGET /stylesheets/wide.css [36m304 [0m0.690 ms - -[0m
+2015-07-07T12:35:56.343948+00:00 heroku[router]: at=info method=GET path="/quizes" host=quiz2015edu.herokuapp.com request_id=d9a1f0cd-140f-4e90-9f94-9859689942a8 fwd="81.47.192.242" dyno=web.1 connect=1ms service=28ms status=200 bytes=2769
+2015-07-07T12:35:56.529472+00:00 heroku[router]: at=info method=GET path="/stylesheets/smartphone.css" host=quiz2015edu.herokuapp.com request_id=399fb689-46a2-4222-a2fc-284a8497d257 fwd="81.47.192.242" dyno=web.1 connect=1ms service=3ms status=304 bytes=236
+2015-07-07T12:35:56.563007+00:00 heroku[router]: at=info method=GET path="/stylesheets/style.css" host=quiz2015edu.herokuapp.com request_id=7a7e330b-7b23-4d19-a055-ac429ffb9608 fwd="81.47.192.242" dyno=web.1 connect=1ms service=26ms status=304 bytes=236
+2015-07-07T12:35:56.529606+00:00 heroku[router]: at=info method=GET path="/stylesheets/wide.css" host=quiz2015edu.herokuapp.com request_id=33eb057d-68a9-4bb2-a5ef-74e26ecc0d92 fwd="81.47.192.242" dyno=web.1 connect=0ms service=1ms status=304 bytes=236
+2015-07-07T12:36:20.813293+00:00 app[web.1]: Executing (default): SELECT "id", "pregunta", "respuesta", "tema", "createdAt", "updatedAt" FROM "Quizzes" AS "Quiz" WHERE pregunta like '%Italia%' and tema like 'humanidades' ORDER BY pregunta;
+2015-07-07T12:36:20.818899+00:00 app[web.1]: Unhandled rejection SequelizeDatabaseError: operator does not exist: "enum_Quizzes_tema" ~~ unknown
+2015-07-07T12:36:20.818901+00:00 app[web.1]:     at module.exports.Query.formatError (/app/node_modules/sequelize/lib/dialects/postgres/query.js:421:16)
+2015-07-07T12:36:20.818903+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/sequelize/lib/dialects/postgres/query.js:105:21)
+2015-07-07T12:36:20.818905+00:00 app[web.1]:     at emit (events.js:95:17)
+2015-07-07T12:36:20.818907+00:00 app[web.1]:     at Query.handleError (/app/node_modules/pg/lib/query.js:99:8)
+2015-07-07T12:36:20.818908+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/pg/lib/client.js:166:26)
+2015-07-07T12:36:20.818910+00:00 app[web.1]:     at emit (events.js:95:17)
+2015-07-07T12:36:20.818911+00:00 app[web.1]:     at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:109:12)
+2015-07-07T12:36:20.818913+00:00 app[web.1]:     at Socket.emit (events.js:95:17)
+2015-07-07T12:36:20.818914+00:00 app[web.1]:     at Socket.<anonymous> (_stream_readable.js:765:14)
+2015-07-07T12:36:20.818916+00:00 app[web.1]:     at Socket.emit (events.js:92:17)
+2015-07-07T12:36:20.818917+00:00 app[web.1]:     at emitReadable_ (_stream_readable.js:427:10)
+2015-07-07T12:36:20.818919+00:00 app[web.1]:     at emitReadable (_stream_readable.js:423:5)
+2015-07-07T12:36:20.818920+00:00 app[web.1]:     at readableAddChunk (_stream_readable.js:166:9)
+2015-07-07T12:36:20.818922+00:00 app[web.1]:     at Socket.Readable.push (_stream_readable.js:128:10)
+2015-07-07T12:36:20.818923+00:00 app[web.1]:     at TCP.onread (net.js:529:21)
+2015-07-07T12:36:28.136214+00:00 heroku[router]: at=info method=GET path="/quizes/new" host=quiz2015edu.herokuapp.com request_id=55798cf9-6889-4822-8d59-b180aa4acd56 fwd="81.47.192.242" dyno=web.1 connect=3ms service=10ms status=200 bytes=2075
+2015-07-07T12:36:28.134671+00:00 app[web.1]: [0mGET /quizes/new [32m200 [0m8.571 ms - 1879[0m
+2015-07-07T12:36:28.349214+00:00 app[web.1]: [0mGET /stylesheets/style.css [36m304 [0m2.010 ms - -[0m
+2015-07-07T12:36:28.351094+00:00 heroku[router]: at=info method=GET path="/stylesheets/style.css" host=quiz2015edu.herokuapp.com request_id=c7d8a186-3c4b-4594-921e-ddc092307fbb fwd="81.47.192.242" dyno=web.1 connect=4ms service=8ms status=304 bytes=236
+2015-07-07T12:36:28.340380+00:00 heroku[router]: at=info method=GET path="/stylesheets/smartphone.css" host=quiz2015edu.herokuapp.com request_id=1c4617cb-4589-4c43-81f6-533474675c29 fwd="81.47.192.242" dyno=web.1 connect=1ms service=3ms status=304 bytes=236
+2015-07-07T12:36:28.339335+00:00 app[web.1]: [0mGET /stylesheets/smartphone.css [36m304 [0m0.944 ms - -[0m
+2015-07-07T12:36:28.676504+00:00 heroku[router]: at=info method=GET path="/stylesheets/wide.css" host=quiz2015edu.herokuapp.com request_id=7891e2b1-c18d-4b72-b93c-aeeab60e0499 fwd="81.47.192.242" dyno=web.1 connect=0ms service=1ms status=304 bytes=236
+2015-07-07T12:36:28.671495+00:00 app[web.1]: [0mGET /stylesheets/wide.css [36m304 [0m0.895 ms - -[0m
+2015-07-07T12:36:47.511758+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=GET path="/quizes?search=Italia&searchTema=humanidades" host=quiz2015edu.herokuapp.com request_id=dbace492-6cbd-4b45-86ec-d2e2a5d3852e fwd="81.47.192.242" dyno=web.1 connect=0ms service=30000ms status=503 bytes=0
+2015-07-07T12:36:47.514194+00:00 app[web.1]: [0mGET /quizes?search=Italia&searchTema=humanidades [32m- [0m- ms - -[0m
+2015-07-07T12:36:57.642207+00:00 app[web.1]: Executing (default): INSERT INTO "Quizzes" ("pregunta","respuesta","tema","updatedAt","createdAt") VALUES ('¿El topo del Real Madrid?','Casillas','ocio','2015-07-07 12:36:57.628 +00:00','2015-07-07 12:36:57.628 +00:00') RETURNING *;
+2015-07-07T12:36:57.809531+00:00 app[web.1]: Executing (default): SELECT "id", "pregunta", "respuesta", "tema", "createdAt", "updatedAt" FROM "Quizzes" AS "Quiz";
+2015-07-07T12:36:57.653036+00:00 heroku[router]: at=info method=POST path="/quizes/create" host=quiz2015edu.herokuapp.com request_id=3d59ea6e-b7fc-4ead-9908-ab68514cac6e fwd="81.47.192.242" dyno=web.1 connect=1ms service=41ms status=302 bytes=276
+2015-07-07T12:36:57.821761+00:00 app[web.1]: [0mGET /quizes [32m200 [0m13.733 ms - 2993[0m
+2015-07-07T12:36:57.647817+00:00 app[web.1]: [0mPOST /quizes/create [36m302 [0m37.806 ms - 70[0m
+2015-07-07T12:36:57.822396+00:00 heroku[router]: at=info method=GET path="/quizes" host=quiz2015edu.herokuapp.com request_id=d0d5f572-6442-47c9-a725-db50edf40858 fwd="81.47.192.242" dyno=web.1 connect=0ms service=14ms status=200 bytes=3189
+2015-07-07T12:36:58.026107+00:00 heroku[router]: at=info method=GET path="/stylesheets/smartphone.css" host=quiz2015edu.herokuapp.com request_id=4f0099e3-415d-4c9e-a1fb-885fa8ba5db5 fwd="81.47.192.242" dyno=web.1 connect=2ms service=4ms status=304 bytes=236
+2015-07-07T12:36:58.007907+00:00 heroku[router]: at=info method=GET path="/stylesheets/style.css" host=quiz2015edu.herokuapp.com request_id=7755518a-3e01-4851-83e8-e67b63e65804 fwd="81.47.192.242" dyno=web.1 connect=0ms service=5ms status=304 bytes=236
+2015-07-07T12:36:58.012962+00:00 heroku[router]: at=info method=GET path="/stylesheets/wide.css" host=quiz2015edu.herokuapp.com request_id=85675498-98d4-4723-83ee-e52a85d49ede fwd="81.47.192.242" dyno=web.1 connect=0ms service=5ms status=304 bytes=236
+2015-07-07T12:36:58.005815+00:00 app[web.1]: [0mGET /stylesheets/wide.css [36m304 [0m1.336 ms - -[0m
+2015-07-07T12:36:58.020710+00:00 app[web.1]: [0mGET /stylesheets/smartphone.css [36m304 [0m0.585 ms - -[0m
+2015-07-07T12:36:58.006361+00:00 app[web.1]: [0mGET /stylesheets/style.css [36m304 [0m1.357 ms - -[0m
+2015-07-07T12:37:03.634193+00:00 app[web.1]: Executing (default): SELECT "id", "pregunta", "respuesta", "tema", "createdAt", "updatedAt" FROM "Quizzes" AS "Quiz" WHERE pregunta like '%' and tema like 'ocio' ORDER BY pregunta;
+2015-07-07T12:37:03.637045+00:00 app[web.1]: Unhandled rejection SequelizeDatabaseError: operator does not exist: "enum_Quizzes_tema" ~~ unknown
+2015-07-07T12:37:03.637048+00:00 app[web.1]:     at module.exports.Query.formatError (/app/node_modules/sequelize/lib/dialects/postgres/query.js:421:16)
+2015-07-07T12:37:03.637049+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/sequelize/lib/dialects/postgres/query.js:105:21)
+2015-07-07T12:37:03.637051+00:00 app[web.1]:     at emit (events.js:95:17)
+2015-07-07T12:37:03.637053+00:00 app[web.1]:     at Query.handleError (/app/node_modules/pg/lib/query.js:99:8)
+2015-07-07T12:37:03.637054+00:00 app[web.1]:     at null.<anonymous> (/app/node_modules/pg/lib/client.js:166:26)
+2015-07-07T12:37:03.637055+00:00 app[web.1]:     at emit (events.js:95:17)
+2015-07-07T12:37:03.637057+00:00 app[web.1]:     at Socket.<anonymous> (/app/node_modules/pg/lib/connection.js:109:12)
+2015-07-07T12:37:03.637059+00:00 app[web.1]:     at Socket.emit (events.js:95:17)
+2015-07-07T12:37:03.637060+00:00 app[web.1]:     at Socket.<anonymous> (_stream_readable.js:765:14)
+2015-07-07T12:37:03.637061+00:00 app[web.1]:     at Socket.emit (events.js:92:17)
+2015-07-07T12:37:03.637067+00:00 app[web.1]:     at readableAddChunk (_stream_readable.js:166:9)
+2015-07-07T12:37:03.637066+00:00 app[web.1]:     at emitReadable (_stream_readable.js:423:5)
+2015-07-07T12:37:03.637063+00:00 app[web.1]:     at emitReadable_ (_stream_readable.js:427:10)
+2015-07-07T12:37:03.637069+00:00 app[web.1]:     at Socket.Readable.push (_stream_readable.js:128:10)
+2015-07-07T12:37:03.637070+00:00 app[web.1]:     at TCP.onread (net.js:529:21)
+2015-07-07T12:37:33.636924+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=GET path="/quizes?search=&searchTema=ocio" host=quiz2015edu.herokuapp.com request_id=a0e89743-2422-4597-851b-9ea2537aec65 fwd="81.47.192.242" dyno=web.1 connect=1ms service=30009ms status=503 bytes=0
+2015-07-07T12:37:33.642105+00:00 app[web.1]: [0mGET /quizes?search=&searchTema=ocio [32m- [0m- ms - -[0m

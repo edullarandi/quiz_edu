@@ -18,19 +18,31 @@ exports.load = function(req, res, next, quizId) {
 
 // GET /quizes
 exports.index = function(req, res) {
+  console.log("SEARCH: " + req.query.search );
+  console.log("SEARCHTEMA: " + req.query.searchTema );
   if ((req.query.search !== undefined) && (req.query.searchTema !== undefined)) {
 		var filtroBusqueda = "%" + req.query.search.replace(/\s+/g,'%') + "%";
-		var filtroTema = "%" + req.query.searchTema + "%";
-		models.Quiz.findAll({where: ["pregunta like ? and tema like ?", filtroBusqueda,filtroTema],order: 'pregunta'}).then(function(quizes){
-			res.render('quizes/index', {quizes: quizes, errors: []});
-		});
+		var filtroTema =  req.query.searchTema ;
+		if (req.query.searchTema !== "") {
+	      console.log("filtroBusqueda: " + req.query.search );
+        console.log("filtroTema: " + req.query.searchTema );
+		    models.Quiz.findAll({where: ["pregunta like ? and tema = ? ", filtroBusqueda,filtroTema],order: 'pregunta'}).then(function(quizes){
+			  res.render('quizes/index', {quizes: quizes, errors: []});
+		  });
+		}else {
+		    console.log("filtroBusqueda2: " + req.query.search );
+        console.log("filtroTema2: " + req.query.searchTema );
+   		  models.Quiz.findAll({where: ["pregunta like ? ", filtroBusqueda],order: 'pregunta'}).then(function(quizes){
+			  res.render('quizes/index', {quizes: quizes, errors: []});
+		  });
+		}
 	}
   else {
    models.Quiz.findAll().then(
     function(quizes) {
       res.render('quizes/index', {quizes: quizes, errors: []});
     });
-}
+};
 };
 
 
@@ -81,7 +93,7 @@ exports.create = function(req, res) {
         .then( function(){ res.redirect('/quizes')}) 
       }      // res.redirect: Redirección HTTP a lista de preguntas
     }
-  ).catch(function(error){next(error)});
+  );
 };
 
 // GET /quizes/author
