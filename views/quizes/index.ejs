@@ -1,6 +1,15 @@
    <form method="get" action="/quizes">
 		<p>Buscar: 
 			<input type="text" name="search" value="" />
+			<label for="tema" class="rem"> Temática: </label>
+      <select name="searchTema">
+        <option value="" selected></option>
+        <option value="otro">Otro</option>
+        <option value="humanidades">Humanidades</option>
+        <option value="ocio">Ocio</option>
+        <option value="ciencia">Ciencia</option>
+        <option value="tecnologia">Tecnología</option>
+      </select>
 			<input type="submit" value="Enviar"/>
 		</p>
 	</form>
@@ -10,6 +19,7 @@
   <% var i; for (i=0; i < quizes.length; i++) { %>        
     <tr>
       <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+      <td><%= quizes[i].tema %></td>
       <td><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></td>
       <td>
         <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
