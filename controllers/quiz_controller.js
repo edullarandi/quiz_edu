@@ -4,8 +4,14 @@ var models = require('../models/models.js');
 
 // Autoload - factoriza el código si ruta incluye :quizId
 exports.load = function(req, res, next, quizId) {
-  models.Quiz.find(quizId).then(
-    function(quiz) {
+  models.Quiz.find({
+            where: {
+                id: Number(quizId)
+            },
+            include: [{
+                model: models.Comment
+            }]
+        }).then(function(quiz) {
       if (quiz) {
         req.quiz = quiz;
         next();
@@ -18,20 +24,20 @@ exports.load = function(req, res, next, quizId) {
 
 // GET /quizes
 exports.index = function(req, res) {
-  console.log("SEARCH: " + req.query.search );
-  console.log("SEARCHTEMA: " + req.query.searchTema );
+  //console.log("SEARCH: " + req.query.search );
+  //console.log("SEARCHTEMA: " + req.query.searchTema );
   if ((req.query.search !== undefined) && (req.query.searchTema !== undefined)) {
 		var filtroBusqueda = "%" + req.query.search.replace(/\s+/g,'%') + "%";
 		var filtroTema =  req.query.searchTema ;
 		if (req.query.searchTema !== "") {
-	      console.log("filtroBusqueda: " + req.query.search );
-        console.log("filtroTema: " + req.query.searchTema );
+	//      console.log("filtroBusqueda: " + req.query.search );
+  //      console.log("filtroTema: " + req.query.searchTema );
 		    models.Quiz.findAll({where: ["pregunta like ? and tema = ? ", filtroBusqueda,filtroTema],order: 'pregunta'}).then(function(quizes){
 			  res.render('quizes/index', {quizes: quizes, errors: []});
 		  });
 		}else {
-		    console.log("filtroBusqueda2: " + req.query.search );
-        console.log("filtroTema2: " + req.query.searchTema );
+		//    console.log("filtroBusqueda2: " + req.query.search );
+    //    console.log("filtroTema2: " + req.query.searchTema );
    		  models.Quiz.findAll({where: ["pregunta like ? ", filtroBusqueda],order: 'pregunta'}).then(function(quizes){
 			  res.render('quizes/index', {quizes: quizes, errors: []});
 		  });
