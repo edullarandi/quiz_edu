@@ -25,13 +25,46 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser('Quiz 2015'));
 app.use(session());
+
+
+
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 // Helpers dinamicos:
+
+
+// AUTO-LOGOUT 
+// Si la sesion está activa comprueba si existe la variable timeout
+// Si no existe la crea. Si existe comprueba que no ha pasado el limite definido
+app.use(function(req, res, next){
+	if (req.session.user) {
+	    console.log("Sesión inicializada: comprueba hora. ");
+		if (req.session.timeout){			
+			// getTime() Devuelve milisegundos
+			var ahora = new Date().getTime();
+			console.log("ahora: " + ahora );
+			var tiempo = ahora - req.session.timeout;
+			
+			if (tiempo > (1000*60*1)){
+			   console.log("TIMEOUT: Cerramos la sesion");
+               delete req.session.user;
+			}else{
+				console.log("Guardamos la hora");
+				req.session.timeout = ahora;				
+			}
+		}else{
+			req.session.timeout = new Date().getTime();
+		}		
+	}
+	next();
+});
+
 app.use(function(req, res, next) {
 
   // guardar path en session.redir para despues de login
+  console.log('**** PATH 1 ANTERIOR: ' + req.path);  
   if (!req.path.match(/\/login|\/logout/)) {
+    console.log('**** PATH 2 ANTERIOR: ' + req.session.redir);  
     req.session.redir = req.path;
   }
 
@@ -39,9 +72,6 @@ app.use(function(req, res, next) {
   res.locals.session = req.session;
   next();
 });
-
-
-
 
 app.use('/', routes);
 
