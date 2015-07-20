@@ -35,7 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // AUTO-LOGOUT 
 // Si la sesion está activa comprueba si existe la variable timeout
-// Si no existe la crea. Si existe comprueba que no ha pasado el limite definido
+// Si no existe la crea. Si existe comprueba que no ha pasado el limite definido.
+// Tiempo máxim 3 minutos: 1000 ms * 60 s * 3 m
 app.use(function(req, res, next){
 	if (req.session.user) {
 	    console.log("Sesión inicializada: comprueba hora. ");
@@ -45,7 +46,7 @@ app.use(function(req, res, next){
 			console.log("ahora: " + ahora );
 			var tiempo = ahora - req.session.timeout;
 			
-			if (tiempo > (1000*60*1)){
+			if (tiempo > (1000*180*1)){
 			   console.log("TIMEOUT: Cerramos la sesion");
                delete req.session.user;
 			}else{

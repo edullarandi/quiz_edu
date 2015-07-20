@@ -6,6 +6,8 @@ var commentController = require('../controllers/comment_controller');
 
 var sessionController = require('../controllers/session_controller');
 
+var statisticsController = require('../controllers/statistic_controller');
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz', errors: [] });
@@ -37,5 +39,8 @@ router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', sessionCon
 
 
 router.get('/quizes/author', quizController.author);
+
+// Ver Estadísticas
+router.get('/quizes/statistics',			statisticsController.index);
 
 module.exports = router;
